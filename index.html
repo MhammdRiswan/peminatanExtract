@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Landing Page</title>
+    <link href="src/output.css" rel="stylesheet" />
+  </head>
+  <body class="bg-gray-100">
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md">
+      <div
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <!-- Logo + Text -->
+        <div class="flex items-center space-x-2">
+          <div class="w-8 h-8 bg-blue-500 rounded-full"></div>
+          <span class="text-xl font-bold text-gray-800"></span>
+        </div>
+
+        <!-- Menu -->
+        <ul class="flex space-x-6 text-gray-600 font-medium">
+          <li><a href="#" class="hover:text-blue-500">Home</a></li>
+
+          <li><a href="#" class="hover:text-blue-500">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-6 py-12">
+      <!-- Title -->
+      <h1 class="text-3xl font-bold text-center text-gray-800 mb-10">
+        Welcome
+      </h1>
+
+      <!-- Cards -->
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Card 1 -->
+        <div
+          class="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition"
+        >
+          <h2 class="text-xl font-semibold mb-3">Card 1</h2>
+          <p class="text-gray-600 mb-4">
+            Ini adalah contoh card pertama menggunakan Tailwind CSS.
+          </p>
+          <button
+            onclick="openModal('modal1')"
+            class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+          >
+            Lihat Detail
+          </button>
+        </div>
+
+        <!-- Card 2 -->
+        <div
+          class="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition"
+        >
+          <h2 class="text-xl font-semibold mb-3">Card 2</h2>
+          <p class="text-gray-600 mb-4">
+            Ini adalah contoh card kedua yang responsive dan modern.
+          </p>
+          <button
+            onclick="openModal('modal2')"
+            class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-green-600"
+          >
+            Lihat Detail
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- modals -->
+    <!-- Modal 1 -->
+    <div
+      id="modal1"
+      class="fixed inset-0 bg-black bg-opacity-50 hidden justify-center items-center"
+    >
+      <div class="bg-white p-6 rounded-xl w-96">
+        <h2 class="text-xl font-bold mb-3">Detail Card 1</h2>
+        <p class="text-gray-600 mb-4">Ini adalah isi detail dari Card 1.</p>
+        <button
+          onclick="closeModal('modal1')"
+          class="bg-red-500 text-white px-4 py-2 rounded"
+        >
+          Tutup
+        </button>
+      </div>
+    </div>
+
+    <!-- Modal 2 -->
+    <div
+      id="modal2"
+      class="fixed inset-0 bg-black bg-opacity-50 hidden justify-center items-center"
+    >
+      <div class="bg-white p-6 rounded-xl w-96">
+        <h2 class="text-xl font-bold mb-3">Detail Card 2</h2>
+        <p class="text-gray-600 mb-4">Ini adalah isi detail dari Card 2.</p>
+        <button
+          onclick="closeModal('modal2')"
+          class="bg-red-500 text-white px-4 py-2 rounded"
+        >
+          Tutup
+        </button>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    function openModal(id) {
+      document.getElementById(id).classList.remove("hidden");
+      document.getElementById(id).classList.add("flex");
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.remove("flex");
+      document.getElementById(id).classList.add("hidden");
+    }
+  </script>
+</html>
