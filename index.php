@@ -9,7 +9,7 @@ include 'koneksi.php';
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Modern Landing Page - KeDai</title>
+    <title>KeDai Konsentrasi</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
     <style>
@@ -42,8 +42,8 @@ include 'koneksi.php';
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center gap-2 group cursor-pointer">
                     <div
-                        class="w-10 h-10 bg-gradient-to-tr from-blue-600 to-indigo-500 rounded-xl shadow-lg flex items-center justify-center transition-transform group-hover:rotate-12">
-                        <img src="src/Kdcw.jpeg" alt="Logo" class="w-10 h-10 object-cover rounded-xl"
+                        class="w-15 h-15 bg-gradient-to-tr from-blue-600 to-indigo-500 rounded-xl shadow-lg flex items-center justify-center transition-transform group-hover:rotate-12">
+                        <img src="src/Kdcw.jpeg" alt="Logo" class="w-15 h-10 object-cover rounded-xl"
                             onerror="this.style.display='none'">
                     </div>
                     <span
@@ -53,10 +53,8 @@ include 'koneksi.php';
                 </div>
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#" class="text-sm font-semibold text-slate-600 hover:text-blue-600 transition">Home</a>
-                    <a href="#" class="text-sm font-semibold text-slate-600 hover:text-blue-600 transition">Features</a>
-                    <a href="#"
-                        class="bg-blue-600 text-white px-5 py-2.5 rounded-full text-sm font-bold hover:bg-blue-700 shadow-md transition">Get
-                        Started</a>
+                    <a href="https://kedai.or.id/"
+                        class="bg-blue-600 text-white px-5 py-2.5 rounded-full text-sm font-bold hover:bg-blue-700 shadow-md transition">About</a>
                 </div>
             </div>
         </div>
@@ -100,7 +98,7 @@ include 'koneksi.php';
                             d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
                 </div>
-                <h2 class="text-2xl font-bold mb-3 text-slate-800">Fast Performance</h2>
+                <h2 class="text-2xl font-bold mb-3 text-slate-800">Our Documentation</h2>
                 <p class="text-slate-500 mb-8 leading-relaxed">Optimasi kode maksimal untuk waktu pemuatan yang sangat
                     instan dan efisien.</p>
                 <button
@@ -274,31 +272,36 @@ include 'koneksi.php';
         closeModal(oldId);
         setTimeout(() => {
             openModal(newId);
-        }, 300); // Delay sedikit untuk efek transisi yang halus
+        }, 300);
     }
 
-    // Close on overlay click
+
     document.getElementById("modal-overlay").addEventListener("click", function() {
         document.querySelectorAll('[id^="modal-"]').forEach((m) => {
             if (!m.classList.contains("hidden")) closeModal(m.id);
         });
     });
 
-    // Typewriter effect
     const textElement = document.getElementById("typewriter");
     const phrase = "Ubah Logika Menjadi Realita: Mulai Perjalanan Teknologimu Hari Ini.";
     let j = 0;
 
     function type() {
         if (j < phrase.length) {
+            // Proses Mengetik
             textElement.innerHTML = phrase.substring(0, j + 1) +
                 '<span class="border-r-2 border-blue-600 animate-pulse ml-1"></span>';
             j++;
-            setTimeout(type, 50);
+            setTimeout(type, 110);
         } else {
-            textElement.innerHTML = phrase;
+            // Kalimat selesai, tunggu 2 detik (2000ms) lalu reset dan mulai lagi
+            setTimeout(() => {
+                j = 0;
+                type();
+            }, 2000);
         }
     }
+    type();
     window.onload = type;
     </script>
 </body>
