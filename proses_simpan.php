@@ -1,14 +1,12 @@
 <?php
 include 'koneksi.php';
 
-// Menangkap data dari form
 $nama        = $_POST['nama'];
 $nim         = $_POST['nim'];
 $jurusan     = $_POST['jurusan'];
-$jkl         = $_POST['jenis_kelamin']; // Sesuai kolom 'Jkl' di database
+$jkl         = $_POST['jenis_kelamin'];
 $konsentrasi = $_POST['konsentrasi'];
 
-// Query Input
 $query = "INSERT INTO peserta (Nim, Nama, Jurusan, Jkl, Konsentrasi) 
           VALUES ('$nim', '$nama', '$jurusan', '$jkl', '$konsentrasi')";
 
