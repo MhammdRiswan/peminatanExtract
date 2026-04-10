@@ -42,7 +42,7 @@ include 'koneksi.php';
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center gap-2 group cursor-pointer">
                     <div
-                        class="w-15 h-10 bg-gradient-to-tr from-blue-600 to-indigo-500 rounded-xl shadow-lg flex items-center justify-center transition-transform group-hover:rotate-12 overflow-hidden">
+                        class="w-10 h-10 bg-gradient-to-tr from-blue-600 to-indigo-500 rounded-xl shadow-lg flex items-center justify-center transition-transform group-hover:rotate-12 overflow-hidden">
                         <img src="src/Kdcw.jpeg" alt="Logo" class="w-full h-full object-cover"
                             onerror="this.style.display='none'">
                     </div>
