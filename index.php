@@ -42,8 +42,8 @@ include 'koneksi.php';
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center gap-2 group cursor-pointer">
                     <div
-                        class="w-15 h-15 bg-gradient-to-tr from-blue-600 to-indigo-500 rounded-xl shadow-lg flex items-center justify-center transition-transform group-hover:rotate-12">
-                        <img src="src/Kdcw.jpeg" alt="Logo" class="w-15 h-10 object-cover rounded-xl"
+                        class="w-15 h-10 bg-gradient-to-tr from-blue-600 to-indigo-500 rounded-xl shadow-lg flex items-center justify-center transition-transform group-hover:rotate-12 overflow-hidden">
+                        <img src="src/Kdcw.jpeg" alt="Logo" class="w-full h-full object-cover"
                             onerror="this.style.display='none'">
                     </div>
                     <span
@@ -51,10 +51,37 @@ include 'koneksi.php';
                         KeDai Computerworks
                     </span>
                 </div>
+
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button"
+                        class="text-slate-600 hover:text-blue-600 focus:outline-none p-2 rounded-lg transition-colors">
+                        <svg id="menu-icon" class="w-6 h-6 transition-transform duration-300" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#" class="text-sm font-semibold text-slate-600 hover:text-blue-600 transition">Home</a>
                     <a href="https://kedai.or.id/"
                         class="bg-blue-600 text-white px-5 py-2.5 rounded-full text-sm font-bold hover:bg-blue-700 shadow-md transition">About</a>
+                </div>
+            </div>
+
+            <div id="mobile-menu"
+                class="md:hidden max-h-0 opacity-0 overflow-hidden transition-all duration-500 ease-in-out">
+                <div class="flex flex-col space-y-3 pb-6 pt-4 border-t border-slate-100 px-2">
+                    <a href="#"
+                        class="block w-full py-3 px-5 bg-slate-100 text-slate-700 text-center rounded-xl text-sm font-bold hover:bg-slate-200 transition">
+                        Home
+                    </a>
+
+                    <a href="https://kedai.or.id/"
+                        class="block w-full py-3 px-5 bg-blue-600 text-white text-center rounded-xl text-sm font-bold hover:bg-blue-700 shadow-md transition">
+                        About
+                    </a>
                 </div>
             </div>
         </div>
@@ -92,15 +119,14 @@ include 'koneksi.php';
             <div
                 class="group bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 max-w-sm w-full">
                 <div
-                    class="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+                    class="w-12 h-12 bg-blue-50 text-indigo-600 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
                 </div>
                 <h2 class="text-2xl font-bold mb-3 text-slate-800">Our Documentation</h2>
-                <p class="text-slate-500 mb-8 leading-relaxed">Optimasi kode maksimal untuk waktu pemuatan yang sangat
-                    instan dan efisien.</p>
+                <p class="text-slate-500 mb-8 leading-relaxed">Ciptakan pengalaman belajar yang aman dan damai</p>
                 <button
                     class="w-full py-3 px-4 bg-slate-50 text-slate-800 font-bold rounded-xl cursor-not-allowed opacity-50">
                     Segera Hadir
@@ -250,22 +276,67 @@ include 'koneksi.php';
     </div>
 
     <script>
+    const btn = document.getElementById('mobile-menu-button');
+    const menu = document.getElementById('mobile-menu');
+    const icon = document.getElementById('menu-icon');
+
+    btn.addEventListener('click', () => {
+        if (menu.classList.contains('max-h-0')) {
+            menu.classList.remove('max-h-0', 'opacity-0');
+            menu.classList.add('max-h-64', 'opacity-100'); // Sesuaikan max-h sesuai konten
+            icon.style.transform = 'rotate(90deg)';
+        } else {
+            menu.classList.add('max-h-0', 'opacity-0');
+            menu.classList.remove('max-h-64', 'opacity-100');
+            icon.style.transform = 'rotate(0deg)';
+        }
+    });
+
     function openModal(id) {
         const modal = document.getElementById(id);
         const overlay = document.getElementById("modal-overlay");
+
+        // Munculkan elemen di DOM terlebih dahulu
         overlay.classList.remove("hidden");
         modal.classList.remove("hidden");
         modal.classList.add("flex");
+
+        // Berikan jeda mikroskopis agar browser sempat merender 'display flex' sebelum transisi dimulai
+        setTimeout(() => {
+            overlay.classList.add("opacity-100");
+            modal.classList.add("opacity-100", "scale-100");
+            modal.classList.remove("opacity-0", "scale-95");
+        }, 10);
+
         document.body.classList.add("modal-active");
     }
 
     function closeModal(id) {
         const modal = document.getElementById(id);
         const overlay = document.getElementById("modal-overlay");
-        overlay.classList.add("hidden");
-        modal.classList.remove("flex");
-        modal.classList.add("hidden");
-        document.body.classList.remove("modal-active");
+
+        // Mulai animasi keluar
+        overlay.classList.remove("opacity-100");
+        overlay.classList.add("opacity-0");
+
+        modal.classList.remove("opacity-100", "scale-100");
+        modal.classList.add("opacity-0", "scale-95");
+
+        // Tunggu animasi selesai (300ms) sebelum benar-benar memberikan class 'hidden'
+        setTimeout(() => {
+            overlay.classList.add("hidden");
+            modal.classList.add("hidden");
+            modal.classList.remove("flex");
+            document.body.classList.remove("modal-active");
+        }, 300);
+    }
+
+    function switchModal(oldId, newId) {
+        // Fungsi switch tetap sama, transisi akan terlihat sangat smooth karena jeda 300ms
+        closeModal(oldId);
+        setTimeout(() => {
+            openModal(newId);
+        }, 350);
     }
 
     function switchModal(oldId, newId) {
@@ -294,13 +365,14 @@ include 'koneksi.php';
             j++;
             setTimeout(type, 110);
         } else {
-            // Kalimat selesai, tunggu 2 detik (2000ms) lalu reset dan mulai lagi
+
             setTimeout(() => {
                 j = 0;
                 type();
             }, 2000);
         }
     }
+
     type();
     window.onload = type;
     </script>
